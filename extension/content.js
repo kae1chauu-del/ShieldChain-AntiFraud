@@ -39,8 +39,9 @@ function scanPageContent() {
     return;
   }
 
-  // AI 初版生成：單一關鍵字過濾（容易誤判正常台股與 ETF 新聞）
-const isInvestmentScam = /(台積電|ETF|配息|殖利率|保證獲利)/.test(sanitized);
+// 財金團隊人工修正：必須同時具備「誇大報酬承諾」與「外部引導加群」才觸發，排除正常理財新聞誤報
+const hasHighReturnClaim = /(保證獲利|穩賺不賠|飆股內線|老師帶單)/.test(sanitized);
+const hasExternalLure = /(加入LINE群組|點擊領取明牌|免費進群)/.test(sanitized);
 
   if (hasHighReturnClaim && hasExternalLure) {
     chrome.runtime.sendMessage({
