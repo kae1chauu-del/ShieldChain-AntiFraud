@@ -1,0 +1,24 @@
+{
+  "manifest_version": 3,
+  "name": "銀盾鏈 ShieldChain AI — 長輩防詐行為鏈守護",
+  "version": "1.0.0",
+  "description": "跨階段金融詐騙行為鏈偵測與適老化即時預警系統",
+  "permissions": [
+    "storage",
+    "tabs"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "銀盾鏈防護狀態"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content.js"],
+      "run_at": "document_idle"
+    }
+  ]
+}
