@@ -39,8 +39,8 @@ function scanPageContent() {
     return;
   }
 
-  const hasHighReturnClaim = /(保證獲利|穩賺不賠|飆股內線|老師帶單)/.test(sanitized);
-  const hasExternalLure = /(加入LINE群組|點擊領取明牌|免費進群)/.test(sanitized);
+  // AI 初版生成：單一關鍵字過濾（容易誤判正常台股與 ETF 新聞）
+const isInvestmentScam = /(台積電|ETF|配息|殖利率|保證獲利)/.test(sanitized);
 
   if (hasHighReturnClaim && hasExternalLure) {
     chrome.runtime.sendMessage({
